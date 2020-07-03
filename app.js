@@ -53,9 +53,10 @@ document.addEventListener('DOMContentLoaded', () =>{
     ]
 
     const grid = document.querySelector('.grid') 
+    const resultDisplay = document.querySelector('#result')
     var cardsChosen = []
-    var cardsChosenID = []
-
+    var cardsChosenId = []
+    var cardsWon = []
 
 //create your board
     function createBoard(){
@@ -69,7 +70,24 @@ document.addEventListener('DOMContentLoaded', () =>{
     }
 
 // check for matches
-
+function checkForMatch(){
+    var cards = document.querySelectorAll('img')
+    const optionOneId = cardsChosenId[0]
+    const optionTwoId = cardsChosenId[1]
+    if (cardsChosen[0] === cardsChosen[1]) {
+      alert('You found a match')
+      cards[optionOneId].setAttribute('src', 'images/tile-blank.png')
+      cards[optionTwoId].setAttribute('src', 'images/tile-blank.png')
+      cardsWon.push(cardsChosen)
+    } else {
+        cards[optionOneId].setAttribute('src', 'images/tile-back')
+        cards[optionTwoId].setAttribute('src', 'images/tile-back')
+        alert('Sorry, try again')
+    }
+    cardsChosen = []
+    cardsChosenId = []
+    resultDisplay
+}
 
 
 // flip your card 
